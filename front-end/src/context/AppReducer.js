@@ -29,8 +29,20 @@ export default (state, action) => {
             ...state,
             chats: [...state.chats, action.payload]
         }
+
+        case 'DELETE_ROOM':
+            return {
+                ...state,
+                loading: false,
+                rooms: action.payload
+            }
         case 'CHAT_ERROR':
             return {
+                ...state,
+                error: action.payload
+            }
+        case 'DELETE_ERROR':
+            return{
                 ...state,
                 error: action.payload
             }

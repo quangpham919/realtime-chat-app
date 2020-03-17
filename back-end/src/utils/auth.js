@@ -5,6 +5,8 @@ import bcrypt from "bcrypt";
 import { loginValidation, registerValidation } from "./validation";
 import { Admin } from "../resources/admin/admin.model";
 import { User } from "../resources/user/user.model";
+
+
 /* 
 Methods need to be implemented
 newToken

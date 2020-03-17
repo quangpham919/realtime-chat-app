@@ -42,6 +42,7 @@ const leaveRoom = (leaveRoomEvent) => {
 
 // Create context
 export const GlobalContext = createContext()
+
 // Provider Component
 export const GlobalProvider = ({children}) => {
     const [user, setUser] = useState('')
@@ -233,6 +234,30 @@ export const GlobalProvider = ({children}) => {
             payload: err.response.data.error
           });
         }
+    }
+
+    // Delete Room 
+    const deleteRoom = async (id,token) => {
+      const config = {
+        headers: {
+          'Authorization':`Bearer ${token}`
+        }
+      }
+
+      try{
+        const res = await axios.delete(`${SERVER}/api/room/${id}`,config);
+
+        dispatch({
+          type: 'DELETE_ROOM',
+          payload: res.data.data
+        });
+      }
+      catch(err){
+        dispatch({
+          type: 'DELETE_ERROR',
+          payload:err.response.data.error
+        })
+      }
     }
 
     return (
